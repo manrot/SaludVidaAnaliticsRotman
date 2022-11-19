@@ -1,0 +1,39 @@
+﻿@model SaludVidaAnaliticsRotman.Models.RelacionConsultorioEquiposMedico
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>RelacionConsultorioEquiposMedico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdRelacion" />
+            <div class="form-group">
+                <label asp-for="IdConsultorio" class="control-label">Nombre consultorio</label>
+                <select asp-for="IdConsultorio" class="form-control" asp-items="ViewBag.IdConsultorio"></select>
+                <span asp-validation-for="IdConsultorio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEquipoMedico" class="control-label">Nombre equipo médico</label>
+                <select asp-for="IdEquipoMedico" class="form-control" asp-items="ViewBag.IdEquipoMedico"></select>
+                <span asp-validation-for="IdEquipoMedico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

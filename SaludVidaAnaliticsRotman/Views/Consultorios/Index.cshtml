@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SaludVidaAnaliticsRotman.Models.Consultorio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreConsultorio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroConsultorio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreConsultorio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroConsultorio)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdConsultorio">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdConsultorio">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdConsultorio">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
