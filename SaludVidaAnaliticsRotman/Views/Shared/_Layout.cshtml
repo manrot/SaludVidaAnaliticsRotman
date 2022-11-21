@@ -37,15 +37,29 @@
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Citas" asp-action="index">Citas</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Reportes
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="ReportePacientesCitas" asp-action="index">Reporte de pacientes por cita</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="EquipoMedicoes" asp-action="index">Registrar equipos médicos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="RelacionConsultorioEquiposMedicoes" asp-action="index">Asignar equipos a consultorios</a>
                         </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="RelacionConsultorioEspecialidades" asp-action="index">Asignar especialidades a consultorios</a>
                         </li>
+              
+                        
                     </ul>
                 </div>
             </div>

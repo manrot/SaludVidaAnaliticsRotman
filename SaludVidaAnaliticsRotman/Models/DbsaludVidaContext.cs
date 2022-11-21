@@ -33,6 +33,7 @@ public partial class DbsaludVidaContext : DbContext
 
     public virtual DbSet<RelacionConsultorioEspecialidade> RelacionConsultorioEspecialidades { get; set; }
 
+    public virtual DbSet<ReportePacientesCita> ReportePacientesCitas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -192,6 +193,27 @@ public partial class DbsaludVidaContext : DbContext
                 .HasForeignKey(d => d.IdEspecialidad)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Relacion_Consultorio_Especialidades_Especialidades");
+        });
+
+        modelBuilder.Entity<ReportePacientesCita>(entity =>
+        {
+            entity
+                .HasKey(e => e.IdCita);
+                //.ToView("ReportePacientesCitas");
+
+            entity.Property(e => e.Apellido1)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Apellido2)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Fecha).HasColumnType("date");
+            entity.Property(e => e.Identificacion)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);

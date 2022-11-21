@@ -20,6 +20,7 @@ try
     builder.Services.AddDbContext<DbsaludVidaContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));
 
+
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
