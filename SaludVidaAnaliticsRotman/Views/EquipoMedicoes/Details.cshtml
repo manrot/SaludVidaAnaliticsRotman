@@ -1,13 +1,13 @@
 ﻿@model SaludVidaAnaliticsRotman.Models.EquipoMedico
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Details</h1>
+<h1>Detalles equipo médico</h1>
 
 <div>
-    <h4>EquipoMedico</h4>
+    <h4>Equipo Médico</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,6 +31,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdEquipo">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.IdEquipo" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </div>

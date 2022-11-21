@@ -15,6 +15,14 @@ public partial class Cita
 
     public DateTime Fecha { get; set; }
 
+    public string FechaCorta
+    {
+        get
+        {
+            return Fecha.ToShortDateString();
+        }
+    }
+
     public int IdHorario { get; set; }
 
     public string CostoConsulta { get; set; } = null!;

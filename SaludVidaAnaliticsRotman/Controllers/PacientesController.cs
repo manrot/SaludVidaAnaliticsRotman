@@ -5,23 +5,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NLog;
 using SaludVidaAnaliticsRotman.Models;
 
 namespace SaludVidaAnaliticsRotman.Controllers
 {
+
     public class PacientesController : Controller
     {
         private readonly DbsaludVidaContext _context;
 
-        public PacientesController(DbsaludVidaContext context)
+
+        private readonly ILogger<PacientesController> _logger;
+
+        public PacientesController(DbsaludVidaContext context, ILogger<PacientesController> logger)
         {
+            _logger = logger;
             _context = context;
         }
 
         // GET: Pacientes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Pacientes.ToListAsync());
+            _logger.LogInformation("Controlador de pacientes inicializado, para la vista de pacientes");
+            try
+            {
+         
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("exception throw...");
+            }
+            return View(await _context.Pacientes.ToListAsync());
         }
 
         // GET: Pacientes/Details/5

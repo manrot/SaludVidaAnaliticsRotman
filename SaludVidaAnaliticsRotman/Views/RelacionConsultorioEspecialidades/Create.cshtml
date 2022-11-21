@@ -1,12 +1,12 @@
 ﻿@model SaludVidaAnaliticsRotman.Models.RelacionConsultorioEspecialidade
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
 }
 
-<h1>Create</h1>
+<h1>Asignar especialidad a consultorio</h1>
 
-<h4>RelacionConsultorioEspecialidade</h4>
+<h4>Relacionar especialidad con un consultorio</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,14 +21,14 @@
                 <select asp-for="IdEspecialidad" class ="form-control" asp-items="ViewBag.IdEspecialidad"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </div>
 
 @section Scripts {

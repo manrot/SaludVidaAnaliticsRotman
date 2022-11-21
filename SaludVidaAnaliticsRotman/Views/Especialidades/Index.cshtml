@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<SaludVidaAnaliticsRotman.Models.Especialidade>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Administrar especialidades";
 }
 
-<h1>Index</h1>
+<h1>Administrar especialidades</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Agregar especialidad</a>
 </p>
-<table class="table">
+<table class="table table-primary">
     <thead>
         <tr>
             <th>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEspecialidad">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEspecialidad">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEspecialidad">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdEspecialidad" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdEspecialidad" class="btn btn-primary">Detalle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdEspecialidad" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }

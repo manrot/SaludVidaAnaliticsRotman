@@ -1,10 +1,10 @@
 ﻿@model SaludVidaAnaliticsRotman.Models.Cita
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar cita</h1>
 
 <h4>Cita</h4>
 <hr />
@@ -14,17 +14,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdCita" />
             <div class="form-group">
-                <label asp-for="IdPaciente" class="control-label"></label>
+                <label asp-for="IdPaciente" class="control-label">Identificación</label>
                 <select asp-for="IdPaciente" class="form-control" asp-items="ViewBag.IdPaciente"></select>
                 <span asp-validation-for="IdPaciente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdMedico" class="control-label"></label>
+                <label asp-for="IdMedico" class="control-label">Médico</label>
                 <select asp-for="IdMedico" class="form-control" asp-items="ViewBag.IdMedico"></select>
                 <span asp-validation-for="IdMedico" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdConsultorio" class="control-label"></label>
+                <label asp-for="IdConsultorio" class="control-label">Consultorio</label>
                 <select asp-for="IdConsultorio" class="form-control" asp-items="ViewBag.IdConsultorio"></select>
                 <span asp-validation-for="IdConsultorio" class="text-danger"></span>
             </div>
@@ -34,7 +34,7 @@
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdHorario" class="control-label"></label>
+                <label asp-for="IdHorario" class="control-label">Horario</label>
                 <select asp-for="IdHorario" class="form-control" asp-items="ViewBag.IdHorario"></select>
                 <span asp-validation-for="IdHorario" class="text-danger"></span>
             </div>
@@ -44,19 +44,19 @@
                 <span asp-validation-for="CostoConsulta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdEspecialidad" class="control-label"></label>
+                <label asp-for="IdEspecialidad" class="control-label">Especialidad</label>
                 <select asp-for="IdEspecialidad" class="form-control" asp-items="ViewBag.IdEspecialidad"></select>
                 <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </div>
 
 @section Scripts {

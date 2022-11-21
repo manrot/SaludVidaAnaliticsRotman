@@ -1,37 +1,37 @@
-﻿@model IEnumerable<SaludVidaAnaliticsRotman.Models.Cita>
+﻿ @model IEnumerable<SaludVidaAnaliticsRotman.Models.Cita>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Administrar citas";
 }
 
-<h1>Index</h1>
+<h1>Administrar citas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Crear cita</a>
 </p>
-<table class="table">
+<table class="table table-primary">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CostoConsulta)
+                Costo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdConsultorioNavigation)
+                Consultorio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdEspecialidadNavigation)
+                Especialidad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdHorarioNavigation)
+                Horario
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdMedicoNavigation)
+                @Html.DisplayNameFor(model => model.IdMedicoNavigation.NombreMedico)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdPacienteNavigation)
+                @Html.DisplayNameFor(model => model.IdPacienteNavigation.Identificacion)
             </th>
             <th></th>
         </tr>
@@ -40,30 +40,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
+                @Html.DisplayFor(modelItem => item.FechaCorta)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CostoConsulta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdConsultorioNavigation.IdConsultorio)
+                @Html.DisplayFor(modelItem => item.IdConsultorioNavigation.NombreConsultorio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdEspecialidadNavigation.IdEspecialidad)
+                @Html.DisplayFor(modelItem => item.IdEspecialidadNavigation.NombreEspecialidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdHorarioNavigation.IdHorario)
+                @Html.DisplayFor(modelItem => item.IdHorarioNavigation.HorarioSelect)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdMedicoNavigation.IdMedico)
+                @Html.DisplayFor(modelItem => item.IdMedicoNavigation.NombreCompleto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPacienteNavigation.IdPaciente)
+                @Html.DisplayFor(modelItem => item.IdPacienteNavigation.Identificacion)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCita">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCita">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCita">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdCita" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdCita" class="btn btn-primary">Detalle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdCita" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }

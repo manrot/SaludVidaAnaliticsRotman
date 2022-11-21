@@ -1,14 +1,14 @@
 ﻿@model SaludVidaAnaliticsRotman.Models.RelacionConsultorioEspecialidade
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar especialidad relacionada a consultorio</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Esta seguro de eiminar esta especialidad del consultorio?</h3>
 <div>
-    <h4>RelacionConsultorioEspecialidade</h4>
+    <h4>Relación entre consultorio y especialidad</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -27,7 +27,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdRelacion" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>

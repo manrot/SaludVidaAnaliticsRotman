@@ -15,6 +15,14 @@ namespace SaludVidaAnaliticsRotman.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Home Controller inicializado");
+            try {
+                var val = 1;
+                var i = val / 0;
+            }
+            catch (Exception ex) {
+                _logger.LogError("exception throw...");
+            }
             return View();
         }
 

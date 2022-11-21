@@ -94,11 +94,14 @@ namespace SaludVidaAnaliticsRotman.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdConsultorio"] = new SelectList(_context.Consultorios, "IdConsultorio", "IdConsultorio", cita.IdConsultorio);
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidades, "IdEspecialidad", "IdEspecialidad", cita.IdEspecialidad);
-            ViewData["IdHorario"] = new SelectList(_context.Horarios, "IdHorario", "IdHorario", cita.IdHorario);
-            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "IdMedico", cita.IdMedico);
-            ViewData["IdPaciente"] = new SelectList(_context.Pacientes, "IdPaciente", "IdPaciente", cita.IdPaciente);
+            ViewData["IdConsultorio"] = new SelectList(_context.Consultorios, "IdConsultorio", "NombreConsultorio", cita.IdConsultorio);
+            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidades, "IdEspecialidad", "NombreEspecialidad", cita.IdEspecialidad);
+            ViewData["IdHorario"] = new SelectList(_context.Horarios, "IdHorario", "HorarioSelect", cita.IdHorario);
+            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombreCompleto", cita.IdMedico);
+            ViewData["IdPaciente"] = new SelectList(_context.Pacientes, "IdPaciente", "Identificacion", cita.IdPaciente);
+
+        
+
             return View(cita);
         }
 
@@ -134,11 +137,16 @@ namespace SaludVidaAnaliticsRotman.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdConsultorio"] = new SelectList(_context.Consultorios, "IdConsultorio", "IdConsultorio", cita.IdConsultorio);
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidades, "IdEspecialidad", "IdEspecialidad", cita.IdEspecialidad);
-            ViewData["IdHorario"] = new SelectList(_context.Horarios, "IdHorario", "IdHorario", cita.IdHorario);
-            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "IdMedico", cita.IdMedico);
-            ViewData["IdPaciente"] = new SelectList(_context.Pacientes, "IdPaciente", "IdPaciente", cita.IdPaciente);
+            ViewData["IdConsultorio"] = new SelectList(_context.Consultorios, "IdConsultorio", "NombreConsultorio", cita.IdConsultorio);
+            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidades, "IdEspecialidad", "NombreEspecialidad", cita.IdEspecialidad);
+            ViewData["IdHorario"] = new SelectList(_context.Horarios, "IdHorario", "HorarioSelect", cita.IdHorario);
+            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombreCompleto", cita.IdMedico);
+            ViewData["IdPaciente"] = new SelectList(_context.Pacientes, "IdPaciente", "Identificacion", cita.IdPaciente);
+
+            
+
+
+
             return View(cita);
         }
 
