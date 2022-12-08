@@ -1,0 +1,72 @@
+﻿<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+
+@model IEnumerable<SaludVidaAnaliticsRotman.Models.Cita>
+
+@{
+    ViewData["Title"] = "Reporte de ingresos";
+    float montoTotal = 0;
+    int citasTotal = 0;
+}
+
+<h1>Reporte de ingresos</h1>
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>
+                Total de ingresos 
+            </th>
+            <th>
+                Total de citas
+            </th>
+            
+        </tr>
+    
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            montoTotal = (float)((float)montoTotal + (float)(float.Parse(item.CostoConsulta)));
+            citasTotal = citasTotal + 1;
+        }
+
+        <tr>
+            <td class="montoTotal">
+                @montoTotal
+            </td>
+            <td class="citasTotal">
+                @citasTotal
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+<button class="export btn btn-primary" id="export">Exportar</button>
+
+<script>
+
+    const guardarArchivoDeTexto = (contenido, nombre) => {
+        const a = document.createElement("a");
+        const archivo = new Blob([contenido], { type: 'json/plain' });
+        const url = URL.createObjectURL(archivo);
+        a.href = url;
+        a.download = nombre;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+
+    $(document).ready(function () {
+        $('.export').click(function () {
+            jsonObj = [];
+            $("table tbody tr").each(function () {
+                var elitem = "{\"montoTotal\": " + $('.montoTotal', this).html() + ", \"citasTotal\": " + $('.citasTotal', this).html() + "}";
+                jsonObj.push(JSON.parse(elitem));
+            });
+             console.log(jsonObj);
+            guardarArchivoDeTexto(JSON.stringify(jsonObj), "Reporte de ingresos.json");
+
+        });
+    });
+</script>

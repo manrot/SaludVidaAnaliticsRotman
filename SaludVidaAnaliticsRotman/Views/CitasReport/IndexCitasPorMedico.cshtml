@@ -1,0 +1,96 @@
+﻿<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+
+@model IEnumerable<SaludVidaAnaliticsRotman.Models.Cita>
+
+@{
+    ViewData["Title"] = "Reporte de citas atendidas";
+}
+
+<h1>Reporte de citas atendidas</h1>
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+
+            <th>
+                Nombre del Médico
+            </th>
+            <th>
+                Identificación
+            </th>
+            <th>
+               Licencia
+            </th>
+            <th>
+               Especialidad
+            </th>
+            <th>
+               Fecha
+            </th>
+           
+        </tr>
+    
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+
+            if (ViewBag.IdMedico == item.IdMedicoNavigation.IdMedico)
+            {
+        <tr>
+                    <td class="NombreCompleto">
+                        @Html.DisplayFor(modelItem => item.IdMedicoNavigation.NombreCompleto)
+            </td>
+                    <td class="Identificacion">
+                        @Html.DisplayFor(modelItem => item.IdMedicoNavigation.Identificacion)
+            </td>
+                    <td class="NumeroLicenciaMedica">
+                        @Html.DisplayFor(modelItem => item.IdMedicoNavigation.NumeroLicenciaMedica)
+            </td>
+                    <td class="NombreEspecialidad">
+                        @Html.DisplayFor(modelItem => item.IdEspecialidadNavigation.NombreEspecialidad)
+            </td>
+                    <td class="Fecha">
+                        @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+          
+
+        </tr>
+            }
+}
+    </tbody>
+</table>
+
+<button class="export btn btn-primary" id="export">Exportar</button>
+
+
+<script>
+
+    const guardarArchivoDeTexto = (contenido, nombre) => {
+        const a = document.createElement("a");
+        const archivo = new Blob([contenido], { type: 'json/plain' });
+        const url = URL.createObjectURL(archivo);
+        a.href = url;
+        a.download = nombre;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+
+    $(document).ready(function () {
+        $('.export').click(function () {
+            jsonObj = [];
+            $("table tbody tr").each(function () {
+                var elitem = "{\"NombreCompleto\": \"" + $('.NombreCompleto', this).html().trim() +
+                "\", \"Identificacion\": \"" + $('.Identificacion', this).html().trim() +
+                "\", \"NumeroLicenciaMedica\": \"" + $('.NumeroLicenciaMedica', this).html().trim() +
+                "\", \"NombreEspecialidad\": \"" + $('.NombreEspecialidad', this).html().trim() +
+                    "\", \"Fecha\": \"" + $('.Fecha', this).html().trim() + "\"}";
+                jsonObj.push(JSON.parse(elitem));
+            });
+            console.log(jsonObj);
+            guardarArchivoDeTexto(JSON.stringify(jsonObj), "Reporte de citas por medico.json");
+
+        });
+    });
+</script>  

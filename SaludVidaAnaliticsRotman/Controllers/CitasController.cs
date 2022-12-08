@@ -57,7 +57,9 @@ namespace SaludVidaAnaliticsRotman.Controllers
             ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombreCompleto");
             ViewData["IdPaciente"] = new SelectList(_context.Pacientes, "IdPaciente", "Identificacion");
 
-           // ViewData["IdMedico"] = new SelectList(_context.Medicos,"IdPaciente",)
+            // ViewData["IdMedico"] = new SelectList(_context.Medicos,"IdPaciente",)
+            var dbsaludVidaContext = _context.Citas.Include(c => c.IdConsultorioNavigation).Include(c => c.IdEspecialidadNavigation).Include(c => c.IdHorarioNavigation).Include(c => c.IdMedicoNavigation).Include(c => c.IdPacienteNavigation);
+            ViewData["DataActual"] = dbsaludVidaContext;
             return View();
         }
 

@@ -99,6 +99,12 @@ public partial class DbsaludVidaContext : DbContext
             entity.ToTable("EquipoMedico");
 
             entity.Property(e => e.Descripcion).HasMaxLength(300);
+            entity.Property(e => e.EspecialidadesAfin).HasMaxLength(300);
+            entity.Property(e => e.FechaCompra).HasColumnType("date");
+            entity.Property(e => e.Serie)
+              .HasMaxLength(20)
+              .IsUnicode(false);
+
             entity.Property(e => e.Estado)
                 .HasMaxLength(20)
                 .IsUnicode(false)

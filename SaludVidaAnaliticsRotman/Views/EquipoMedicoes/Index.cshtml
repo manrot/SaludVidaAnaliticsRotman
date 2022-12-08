@@ -21,6 +21,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.Estado)
             </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Serie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EspecialidadesAfin)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +46,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EspecialidadesAfin)
+                </td>
             <td>
                     <a asp-action="Edit" asp-route-id="@item.IdEquipo" class="btn btn-warning">Editar</a> |
                     <a asp-action="Details" asp-route-id="@item.IdEquipo" class="btn btn-primary">Detalle</a> |

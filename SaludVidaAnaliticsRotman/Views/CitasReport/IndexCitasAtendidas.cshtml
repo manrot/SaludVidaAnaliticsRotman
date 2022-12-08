@@ -1,0 +1,102 @@
+﻿<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+@model IEnumerable<SaludVidaAnaliticsRotman.Models.Cita>
+
+@{
+    ViewData["Title"] = "Reporte de citas atendidas";
+}
+
+<h1>Reporte de citas atendidas</h1>
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>
+                NombrePaciente
+            </th>
+            <th>
+                Apellido1Paciente
+            </th>
+            <th>
+                Apellido2Paciente
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+               Médico
+            </th>
+            <th>
+               Costo
+            </th>
+            <th>
+               HoraInit
+            </th>
+            <th>
+              HoraEnd
+            </th>
+        </tr>
+    
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td class="Nombre">
+                @Html.DisplayFor(modelItem => item.IdPacienteNavigation.Nombre)
+            </td>
+                <td class="Apellido1">
+                @Html.DisplayFor(modelItem => item.IdPacienteNavigation.Apellido1)
+            </td>
+                <td class="Apellido2">
+                    @Html.DisplayFor(modelItem => item.IdPacienteNavigation.Apellido2)
+            </td>
+                <td class="FechaCorta">
+                @Html.DisplayFor(modelItem => item.FechaCorta)
+            </td>
+                <td class="NombreCompleto">
+                @Html.DisplayFor(modelItem => item.IdMedicoNavigation.NombreCompleto)
+            </td>
+                <td class="CostoConsulta">
+                @Html.DisplayFor(modelItem => item.CostoConsulta)
+            </td>
+                <td class="HoraInit">
+                    @Html.DisplayFor(modelItem => item.IdHorarioNavigation.HoraInit)
+                </td>
+                <td class="HoraEnd">
+                    @Html.DisplayFor(modelItem => item.IdHorarioNavigation.HoraEnd)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<button class="export btn btn-primary" id="export">Exportar</button>
+
+<script>
+
+    const guardarArchivoDeTexto = (contenido, nombre) => {
+        const a = document.createElement("a");
+        const archivo = new Blob([contenido], { type: 'json/plain' });
+        const url = URL.createObjectURL(archivo);
+        a.href = url;
+        a.download = nombre;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+
+    $(document).ready(function () {
+        $('.export').click(function () {
+            jsonObj = [];
+            $("table tbody tr").each(function () {
+                var elitem = "{\"Nombre\": \"" + $('.Nombre', this).html().trim() + "\", \"Apellido1\": \"" + $('.Apellido1', this).html().trim() + "\", \"Apellido2\": \"" + $('.Apellido2', this).html().trim() + "\", \"FechaCorta\": \"" + $('.FechaCorta', this).html().trim() + "\", \"NombreCompleto\": \"" + $('.NombreCompleto', this).html().trim() + "\", \"CostoConsulta\": \"" + $('.CostoConsulta', this).html().trim() + "\", \"HoraInit\": \"" + $('.HoraInit', this).html().trim() + "\", \"HoraEnd\": \"" + $('.HoraEnd', this).html().trim() + "\"}";
+                jsonObj.push(JSON.parse(elitem));
+            });
+            console.log(jsonObj);
+            guardarArchivoDeTexto(JSON.stringify(jsonObj), "Reporte de citas atendidas.json");
+
+        });
+    });
+</script>   

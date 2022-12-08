@@ -17,5 +17,13 @@ public partial class Paciente
 
     public string Telefono { get; set; } = null!;
 
+    public string NombreCompleto
+    {
+        get
+        {
+            return Nombre + " " + Apellido1 + " " + Apellido2;
+        }
+    }
+
     public virtual ICollection<Cita> Cita { get; } = new List<Cita>();
 }

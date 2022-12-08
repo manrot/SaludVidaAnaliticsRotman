@@ -1,0 +1,144 @@
+﻿<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+@model IEnumerable<SaludVidaAnaliticsRotman.Models.Cita>
+
+@{
+    ViewData["Title"] = "Reporte de citas atendidas por especialidad";
+    int idEspecialidadActual = 0;
+    string EspecialidadActual = "";
+    int cantidadCitasEspecialidad = 0;
+    int cantidadTotalCitas = 0;
+    float PorcentajeEspecialidad = 0;
+
+}
+
+<h1>Reporte de citas atendidas por especialidad</h1>
+
+@foreach (var item in Model) {
+    cantidadTotalCitas = cantidadTotalCitas + 1;
+}
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>
+                Cantidad de Citas de la especialidad
+            </th>
+            <th>
+               TotalCitas
+            </th>
+            <th>
+                Porcentaje
+            </th>
+            <th>
+                Nombre especialidad
+            </th>
+            <th>
+               Id especialidad
+            </th>
+         
+        </tr>
+    
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            if (idEspecialidadActual == 0)
+            {
+                idEspecialidadActual = item.IdEspecialidad;
+                EspecialidadActual = item.IdEspecialidadNavigation.NombreEspecialidad;
+                cantidadCitasEspecialidad = 1;
+            }
+            else {
+                if (idEspecialidadActual == item.IdEspecialidad)
+                {
+                    cantidadCitasEspecialidad = cantidadCitasEspecialidad + 1;
+                }
+                else{
+                    PorcentajeEspecialidad = (float)((float)(cantidadCitasEspecialidad * 100) / (float)cantidadTotalCitas);
+                    <tr>
+                        <td class="cantidadCitasEspecialidad">
+                            @cantidadCitasEspecialidad
+                        </td>
+                        <td class="cantidadTotalCitas">
+                            @cantidadTotalCitas
+                        </td>
+                        <td class="PorcentajeEspecialidad">
+                            @PorcentajeEspecialidad
+                        </td>
+                        <td class="Especialidad">
+                            @EspecialidadActual
+                        </td>
+                        <td class="idEspecialidad">
+                            @idEspecialidadActual
+                        </td>
+
+                    </tr>
+
+                    idEspecialidadActual = item.IdEspecialidad;
+                    EspecialidadActual = item.IdEspecialidadNavigation.NombreEspecialidad;
+                    cantidadCitasEspecialidad = 1;
+                }
+            }
+
+       
+}
+
+@{
+            PorcentajeEspecialidad = (float)((float)(cantidadCitasEspecialidad * 100) / (float)cantidadTotalCitas);
+}
+        <tr>
+            <td class="cantidadCitasEspecialidad">
+                @cantidadCitasEspecialidad
+            </td>
+            <td class="cantidadTotalCitas">
+                @cantidadTotalCitas
+            </td>
+            <td class="PorcentajeEspecialidad">
+                @PorcentajeEspecialidad
+            </td>
+            <td class="Especialidad">
+                @EspecialidadActual
+            </td>
+            <td class="idEspecialidad">
+                @idEspecialidadActual
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+
+<button class="export btn btn-primary" id="export">Exportar</button>
+
+
+<script>
+
+    const guardarArchivoDeTexto = (contenido, nombre) => {
+        const a = document.createElement("a");
+        const archivo = new Blob([contenido], { type: 'json/plain' });
+        const url = URL.createObjectURL(archivo);
+        a.href = url;
+        a.download = nombre;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+
+    $(document).ready(function () {
+        $('.export').click(function () {
+            jsonObj = [];
+            $("table tbody tr").each(function () {
+                var elitem = "{\"cantidadCitasEspecialidad\": \"" + $('.cantidadCitasEspecialidad', this).html().trim() +
+                    "\", \"cantidadTotalCitas\": \"" + $('.cantidadTotalCitas', this).html().trim() +
+                    "\", \"PorcentajeEspecialidad\": \"" + $('.PorcentajeEspecialidad', this).html().trim() +
+                    "\", \"Especialidad\": \"" + $('.Especialidad', this).html().trim() +
+                    "\", \"idEspecialidad\": \"" + $('.idEspecialidad', this).html().trim() + "\"}";
+                jsonObj.push(JSON.parse(elitem));
+            });
+            console.log(jsonObj);
+            guardarArchivoDeTexto(JSON.stringify(jsonObj), "Reporte de porcentaje de atención especialidades.json");
+
+        });
+    });
+</script>  

@@ -1,0 +1,113 @@
+﻿<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+@model IEnumerable<SaludVidaAnaliticsRotman.Models.RelacionConsultorioEquiposMedico>
+
+@{
+    ViewData["Title"] = "Reportes de activos";
+}
+
+<h1>Reportes de activos</h1>
+
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdConsultorioNavigation.NumeroConsultorio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdConsultorioNavigation.NombreConsultorio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipoMedicoNavigation.NombreEquipo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipoMedicoNavigation.Serie)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipoMedicoNavigation.EspecialidadesAfin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipoMedicoNavigation.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipoMedicoNavigation.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipoMedicoNavigation.FechaCompra)
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td class="NumeroConsultorio">
+                @Html.DisplayFor(modelItem => item.IdConsultorioNavigation.NumeroConsultorio)
+            </td>
+                <td class="NombreConsultorio">
+                    @Html.DisplayFor(modelItem => item.IdConsultorioNavigation.NombreConsultorio)
+                </td>
+                <td class="NombreEquipo">
+                @Html.DisplayFor(modelItem => item.IdEquipoMedicoNavigation.NombreEquipo)
+            </td>
+                <td class="Serie">
+                    @Html.DisplayFor(modelItem => item.IdEquipoMedicoNavigation.Serie)
+                </td>
+                <td class="EspecialidadesAfin">
+                    @Html.DisplayFor(modelItem => item.IdEquipoMedicoNavigation.EspecialidadesAfin)
+                </td>
+                <td class="Estado">
+                    @Html.DisplayFor(modelItem => item.IdEquipoMedicoNavigation.Estado)
+                </td>
+                <td class="Descripcion">
+                    @Html.DisplayFor(modelItem => item.IdEquipoMedicoNavigation.Descripcion)
+                </td>
+                <td class="FechaCompra">
+                    @Html.DisplayFor(modelItem => item.IdEquipoMedicoNavigation.FechaCompra)
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<button class="export btn btn-primary" id="export">Exportar</button>
+
+
+<script>
+
+    const guardarArchivoDeTexto = (contenido, nombre) => {
+        const a = document.createElement("a");
+        const archivo = new Blob([contenido], { type: 'json/plain' });
+        const url = URL.createObjectURL(archivo);
+        a.href = url;
+        a.download = nombre;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+
+    $(document).ready(function () {
+        $('.export').click(function () {
+            jsonObj = [];
+            $("table tbody tr").each(function () {
+                var elitem = "{\"NumeroConsultorio\": \"" + $('.NumeroConsultorio', this).html().trim() +
+                    "\", \"NombreConsultorio\": \"" + $('.NombreConsultorio', this).html().trim() +
+                    "\", \"NombreEquipo\": \"" + $('.NombreEquipo', this).html().trim() +
+                    "\", \"Serie\": \"" + $('.Serie', this).html().trim() +
+                    "\", \"EspecialidadesAfin\": \"" + $('.EspecialidadesAfin', this).html().trim() +
+                    "\", \"Estado\": \"" + $('.Estado', this).html().trim() +
+                    "\", \"Descripcion\": \"" + $('.Descripcion', this).html().trim() +
+                    "\", \"FechaCompra\": \"" + $('.FechaCompra', this).html().trim() + "\"}";
+                jsonObj.push(JSON.parse(elitem));
+            });
+            console.log(jsonObj);
+            guardarArchivoDeTexto(JSON.stringify(jsonObj), "Reporte de activos.json");
+
+        });
+    });
+</script> 

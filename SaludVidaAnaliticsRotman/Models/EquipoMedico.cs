@@ -11,6 +11,12 @@ public partial class EquipoMedico
 
     public string? Descripcion { get; set; }
 
+    public string? EspecialidadesAfin { get; set; }
+
+    public string? Serie { get; set; }
+
+    public DateTime FechaCompra { get; set; }
+
     public string Estado { get; set; } = null!;
 
     public virtual ICollection<RelacionConsultorioEquiposMedico> RelacionConsultorioEquiposMedicos { get; } = new List<RelacionConsultorioEquiposMedico>();

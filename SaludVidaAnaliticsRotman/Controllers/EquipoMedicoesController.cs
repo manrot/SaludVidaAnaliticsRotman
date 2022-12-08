@@ -53,7 +53,7 @@ namespace SaludVidaAnaliticsRotman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdEquipo,NombreEquipo,Descripcion,Estado")] EquipoMedico equipoMedico)
+        public async Task<IActionResult> Create([Bind("IdEquipo,NombreEquipo,Descripcion,Estado,Serie,FechaCompra,EspecialidadesAfin")] EquipoMedico equipoMedico)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace SaludVidaAnaliticsRotman.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("IdEquipo,NombreEquipo,Descripcion,Estado")] EquipoMedico equipoMedico)
+        public async Task<IActionResult> Edit(long id, [Bind("IdEquipo,NombreEquipo,Descripcion,Estado,Serie,FechaCompra,EspecialidadesAfin")] EquipoMedico equipoMedico)
         {
             if (id != equipoMedico.IdEquipo)
             {
